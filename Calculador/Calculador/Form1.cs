@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
+
 
 namespace Calculador
 {
@@ -188,17 +190,22 @@ namespace Calculador
 
         private void btCE(object sender, EventArgs e)
         {
-            a = Convert.ToDouble("");
-            b = Convert.ToDouble("");
-            this.tbResultado.Text = "";
+
+            if (tbResultado.Text.Length == 1)
+            {
+                tbResultado.Text = "";
+            }
+            else
+            {
+                tbResultado.Text = tbResultado.Text.Substring(0, tbResultado.Text.Length - 1);
+            }
         }
 
         private void buttonC_Click(object sender, EventArgs e)
         {
-            if (tbResultado.Text.Length == 1)
-                tbResultado.Text = "";
-            else
-                tbResultado.Text = tbResultado.Text.Substring(0, tbResultado.Text.Length - 1);
+            a = Convert.ToDouble("0");
+            b = Convert.ToDouble("0");
+            this.tbResultado.Text = "";
         }
 
         private void btIgual(object sender, EventArgs e)
@@ -207,21 +214,22 @@ namespace Calculador
             switch (c)
             {
                 case "+":
-                    this.tbResultado.Text = Convert.ToString(b + a);
+                    this.tbResultado.Text = Convert.ToString((b) + (a));
                     break;
 
                 case "-":
-                    this.tbResultado.Text = Convert.ToString(b - a);
+                    this.tbResultado.Text = Convert.ToString((b) - (a));
                     break;
 
                 case "*":
-                    this.tbResultado.Text = Convert.ToString(b * a);
+                    this.tbResultado.Text = Convert.ToString((b)* (a));
                     break;
 
                 case "/":
-                    this.tbResultado.Text = Convert.ToString(b / a);
+                    this.tbResultado.Text = Convert.ToString((b) / (a));
                     break;
             }
         }
+
     }
 }
